@@ -21,7 +21,7 @@ PitchPainter is a web-based drawing and guessing game that allows players to dra
 
 ## Technologies Used
 
-- NextJS with ReactJs for the front-end.
+- NextJS with ReactJS for the front-end.
 - Supabase for the back-end.
 
 ## Installation
