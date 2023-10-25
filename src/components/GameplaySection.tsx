@@ -31,7 +31,7 @@ const GameplaySection = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className="flex flex-col w-full gap-4">
+    <div className="flex flex-col w-full gap-4 max-w-[1216px]">
       <div className="flex w-full justify-between">
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-2 flex-wrap">
@@ -51,7 +51,7 @@ const GameplaySection = () => {
         <Canvas
           buttonRef={buttonRef}
           canvasHeight={550}
-          canvasWidth={850}
+          canvasWidth={800}
           canvasStyle="border-4 border-green-600 bg-white rounded-xl"
           color={color}
           lineWidth={10}
