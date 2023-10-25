@@ -43,15 +43,13 @@ const Canvas = ({
   }, [buttonRef, clearCanvas]);
 
   return (
-    <>
-      <canvas
-        onMouseDown={onMouseDown}
-        ref={canvasRef}
-        className={canvasStyle}
-        width={canvasWidth}
-        height={canvasHeight}
-      />
-    </>
+    <canvas
+      onMouseDown={onMouseDown}
+      ref={canvasRef}
+      className={canvasStyle}
+      width={canvasWidth}
+      height={canvasHeight}
+    />
   );
 };
 

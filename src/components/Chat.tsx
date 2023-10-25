@@ -33,7 +33,7 @@ const messages = [
 
 const Chat = () => {
   return (
-    <div className="border-4 border-green-600 rounded-xl w-full flex flex-col justify-between py-4 px-2">
+    <div className="border-4 border-green-600 rounded-xl flex flex-col justify-between py-4 px-2">
       <ul className="flex flex-col gap-2">
         {messages.map((message) => (
           <li key={message.id} className="flex gap-2">
