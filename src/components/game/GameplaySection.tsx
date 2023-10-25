@@ -5,6 +5,9 @@ import Canvas from "./Canvas";
 import Chat from "./Chat";
 import { TrashIcons } from "@/utils/Icons";
 import Scoreboard from "./Scoreboard";
+import HiddenWord from "./HiddenWord";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import HelperBar from "./HelperBar";
 
 const colors = [
   "#000",
@@ -48,14 +51,17 @@ const GameplaySection = () => {
             <TrashIcons className="h-8 w-8 text-green-600 hover:text-green-700" />
           </button>
         </div>
-        <Canvas
-          buttonRef={buttonRef}
-          canvasHeight={550}
-          canvasWidth={800}
-          canvasStyle="border-4 border-green-600 bg-white rounded-xl"
-          color={color}
-          lineWidth={10}
-        />
+        <div className="flex flex-col gap-2">
+          <HelperBar />
+          <Canvas
+            buttonRef={buttonRef}
+            canvasHeight={550}
+            canvasWidth={800}
+            canvasStyle="border-4 border-green-600 bg-white rounded-xl"
+            color={color}
+            lineWidth={10}
+          />
+        </div>
         <Chat />
       </div>
       <Scoreboard />

@@ -1,3 +1,4 @@
+import { useWordStore } from "@/utils/idea-generation";
 import Top3Chat from "./Top3Chat";
 
 const messages = [
@@ -34,6 +35,7 @@ const messages = [
 ];
 
 const Chat = () => {
+  const { setSelectedWord } = useWordStore();
   return (
     <div className="border-4 border-green-600 rounded-xl flex flex-col justify-between py-4 px-2 max-w-xs gap-2">
       <div className="flex flex-col justify-between h-full">
@@ -52,6 +54,7 @@ const Chat = () => {
           className="rounded-xl w-full p-2"
           type="text"
           placeholder="Escribe un mensaje"
+          onChange={(e) => setSelectedWord(e.target.value)}
         />
         <button className="bg-green-600 text-white font-bold py-2 px-4 rounded-xl">
           Enviar
