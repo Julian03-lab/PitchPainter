@@ -17,3 +17,9 @@ type Canvas = {
   canvasStyle?: string;
   buttonRef: React.RefObject<HTMLButtonElement>;
 };
+
+type Message = {
+  message: string;
+  sender: string;
+  timestamp?: string;
+};

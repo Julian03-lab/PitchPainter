@@ -43,24 +43,20 @@ const Scoreboard = () => {
   return (
     <ul className="flex p-4 gap-3 rounded-xl bg-gradient-to-r from-green-500 via-green-600 to-green-700 w-full overflow-x-auto">
       {userList.map((user) => (
-        <>
-          <li key={user.id} className="flex gap-3 items-center">
-            <BallIcon
-              className={`w-8 h-8 ${
-                user.completed ? "fill-white" : "fill-white/25"
-              }`}
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-medium whitespace-nowrap">
-                {user.name}
-              </p>
-              <p className="text-base font-normal whitespace-nowrap">
-                {user.score} PTS
-              </p>
-            </div>
-            <div className="bg-black border h-full" />
-          </li>
-        </>
+        <li key={user.id} className="flex gap-3 items-center">
+          <BallIcon
+            className={`w-8 h-8 ${
+              user.completed ? "fill-white" : "fill-white/25"
+            }`}
+          />
+          <div className="flex flex-col items-center">
+            <p className="text-lg font-medium whitespace-nowrap">{user.name}</p>
+            <p className="text-base font-normal whitespace-nowrap">
+              {user.score} PTS
+            </p>
+          </div>
+          <div className="bg-black border h-full" />
+        </li>
       ))}
     </ul>
   );

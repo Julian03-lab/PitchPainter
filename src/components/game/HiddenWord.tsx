@@ -3,15 +3,12 @@ import React from "react";
 
 const HiddenWord = () => {
   //Max length of word is 17
-  // const supabase = createClientComponentClient();
-  const word = "test";
-  const hiddenWord = Array.from(word).map((letter) => "_");
-
   const { selectedWord } = useWordStore();
+  const hiddenWord = Array.from(selectedWord).map((letter) => "_");
 
   return (
     <div className="text-black font-bold text-4xl tracking-widest pointer-events-none w-fit max-w-xl truncate">
-      {selectedWord}
+      {hiddenWord}
     </div>
   );
 };
