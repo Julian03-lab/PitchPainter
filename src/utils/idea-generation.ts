@@ -17,6 +17,11 @@ type TimerState = {
   setTimerFinished: (timerFinished: boolean) => void;
 };
 
+type userState = {
+  user: string;
+  setUser: (user: string) => void;
+};
+
 export const useWordStore = create<SelectedWordsState>()((set) => ({
   selectedWord: "",
   setSelectedWord: (selectedWord: string) => set({ selectedWord }),
@@ -32,4 +37,9 @@ export const useDrawColorStore = create<DrawColorState>()((set) => ({
 export const useTimerStore = create<TimerState>()((set) => ({
   timerFinished: false,
   setTimerFinished: (timerFinished: boolean) => set({ timerFinished }),
+}));
+
+export const useUserStore = create<userState>()((set) => ({
+  user: "",
+  setUser: (user: string) => set({ user }),
 }));

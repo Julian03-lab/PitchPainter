@@ -9,7 +9,13 @@ import { useTimerStore, useWordStore } from "@/utils/idea-generation";
 import ToolBar from "./ToolBar";
 import { client } from "@/utils/supabase/client";
 
-const GameplaySection = ({ selectedWord }: { selectedWord: string }) => {
+const GameplaySection = ({
+  selectedWord,
+  roomId,
+}: {
+  selectedWord: string;
+  roomId: string;
+}) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { setSelectedWord } = useWordStore();
   const { timerFinished } = useTimerStore();
@@ -32,7 +38,7 @@ const GameplaySection = ({ selectedWord }: { selectedWord: string }) => {
             lineWidth={10}
           />
         </div>
-        <Chat />
+        <Chat roomId={roomId} />
       </div>
       <Scoreboard />
     </div>
