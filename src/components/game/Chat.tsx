@@ -11,16 +11,15 @@ const Chat = ({ roomId }: { roomId: string }) => {
     <div className="border-4 border-green-600 rounded-xl flex flex-col justify-between py-4 px-2 max-w-xs gap-4">
       <div className="flex flex-col justify-between h-full">
         <Top3Chat />
-        <ul className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-full flex-wrap">
           {messages.map((userMessage, i) => (
-            <li key={i} className="flex gap-2">
-              <span className="font-bold text-base">
-                {userMessage.sender}:{" "}
+            <div key={i} className="flex gap-2 w-full">
+              <span className="break-all">
+                <strong>{userMessage.sender}:</strong> {userMessage.message}
               </span>
-              <span className="text-base">{userMessage.message}</span>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
       <ChatInput roomId={roomId} />
     </div>
