@@ -20,6 +20,10 @@ type TimerState = {
 type userState = {
   user: string;
   setUser: (user: string) => void;
+  guessed: boolean;
+  setGuessed: (guessed: boolean) => void;
+  points: number;
+  setPoints: (points: number) => void;
 };
 
 export const useWordStore = create<SelectedWordsState>()((set) => ({
@@ -42,4 +46,8 @@ export const useTimerStore = create<TimerState>()((set) => ({
 export const useUserStore = create<userState>()((set) => ({
   user: "",
   setUser: (user: string) => set({ user }),
+  guessed: false,
+  setGuessed: (guessed: boolean) => set({ guessed }),
+  points: 0,
+  setPoints: (points: number) => set({ points }),
 }));

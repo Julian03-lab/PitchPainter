@@ -14,10 +14,6 @@ export async function POST(request: NextRequest) {
   //   const room = searchParams.get("room");
   //   const password = searchParams.get("password") || "";
 
-  if (!room) {
-    return NextResponse.redirect("/play");
-  }
-
   const { data } = await supabase
     .from("games")
     .select("*")
@@ -25,16 +21,16 @@ export async function POST(request: NextRequest) {
     .single();
 
   if (!data) {
-    return NextResponse.redirect(`/play/${data.id}`);
+    return NextResponse.json({ error: "No data" }, { status: 404 });
   }
 
   if (!data.password) {
-    return NextResponse.redirect("/play/${");
+    return NextResponse.json({ message: "Success" }, { status: 200 });
   }
 
   if (data.password !== password) {
     return NextResponse.json({ error: "Incorrect password" }, { status: 401 });
   }
 
-  return NextResponse.redirect(`/play/${data.id}`);
+  return NextResponse.json({ message: "Success" }, { status: 200 });
 }

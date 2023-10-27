@@ -7,7 +7,7 @@ import Scoreboard from "./Scoreboard";
 import HelperBar from "./HelperBar";
 import { useTimerStore, useWordStore } from "@/utils/idea-generation";
 import ToolBar from "./ToolBar";
-import { client } from "@/utils/supabase/client";
+import usePresence from "@/utils/hooks/usePresence";
 
 const GameplaySection = ({
   selectedWord,
@@ -19,6 +19,9 @@ const GameplaySection = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { setSelectedWord } = useWordStore();
   const { timerFinished } = useTimerStore();
+  const { users } = usePresence(roomId);
+
+  console.log(users);
 
   useEffect(() => {
     setSelectedWord(selectedWord);
@@ -40,7 +43,7 @@ const GameplaySection = ({
         </div>
         <Chat roomId={roomId} />
       </div>
-      <Scoreboard />
+      <Scoreboard users={users} />
     </div>
   );
 };

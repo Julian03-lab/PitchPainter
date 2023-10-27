@@ -23,3 +23,10 @@ type Message = {
   sender: string;
   timestamp?: string;
 };
+
+type User = {
+  username: string;
+  presence_ref: string;
+  guessed: boolean;
+  points: number;
+};

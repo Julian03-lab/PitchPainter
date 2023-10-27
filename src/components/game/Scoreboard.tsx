@@ -1,58 +1,22 @@
 import { BallIcon } from "@/utils/Icons";
+import usePresence from "@/utils/hooks/usePresence";
 
-const userList = [
-  {
-    id: 1,
-    name: "Alice",
-    score: 10,
-    completed: true,
-  },
-  {
-    id: 2,
-    name: "BobBobBobBobBob",
-    score: 20,
-    completed: false,
-  },
-  {
-    id: 3,
-    name: "Charlie",
-    score: 30,
-    completed: false,
-  },
-  {
-    id: 4,
-    name: "Dave",
-    score: 40,
-    completed: true,
-  },
-  {
-    id: 5,
-    name: "Eve",
-    score: 50,
-    completed: false,
-  },
-  {
-    id: 6,
-    name: "Tito pacheco",
-    score: 10,
-    completed: true,
-  },
-];
-
-const Scoreboard = () => {
+const Scoreboard = ({ users }: { users: any[] }) => {
   return (
-    <ul className="flex p-4 gap-3 rounded-xl bg-gradient-to-r from-green-500 via-green-600 to-green-700 w-full overflow-x-auto">
-      {userList.map((user) => (
-        <li key={user.id} className="flex gap-3 items-center">
+    <ul className="flex h-[68px] py-2 px-4 gap-3 rounded-xl bg-gradient-to-r from-green-500 via-green-600 to-green-700 w-full overflow-x-auto">
+      {users.map((user) => (
+        <li key={user.presence_ref} className="flex gap-3 items-center">
           <BallIcon
             className={`w-8 h-8 ${
-              user.completed ? "fill-white" : "fill-white/25"
+              user.guessed ? "fill-white" : "fill-white/25"
             }`}
           />
           <div className="flex flex-col items-center">
-            <p className="text-lg font-medium whitespace-nowrap">{user.name}</p>
+            <p className="text-lg font-medium whitespace-nowrap">
+              {user.username}
+            </p>
             <p className="text-base font-normal whitespace-nowrap">
-              {user.score} PTS
+              {user.points} PTS
             </p>
           </div>
           <div className="bg-black border h-full" />

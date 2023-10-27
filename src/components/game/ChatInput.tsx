@@ -1,5 +1,6 @@
 import useChannel from "@/utils/hooks/useChannel";
-import { useWordStore } from "@/utils/idea-generation";
+import { useUserStore, useWordStore } from "@/utils/idea-generation";
+import { Button, Input } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 
 const ChatInput = ({ roomId }: { roomId: string }) => {
@@ -7,6 +8,7 @@ const ChatInput = ({ roomId }: { roomId: string }) => {
   const [message, setMessage] = useState("");
   const { channel } = useChannel(`room-${roomId}`, "message");
   const { selectedWord } = useWordStore();
+  const { setPoints, points, setGuessed } = useUserStore();
 
   function sendRealtime(event: string, payload: Message) {
     if (payload.message === "") {
@@ -14,7 +16,9 @@ const ChatInput = ({ roomId }: { roomId: string }) => {
     }
 
     if (selectedWord.toUpperCase() === payload.message.toUpperCase()) {
-      console.log("You guessed the word!");
+      setPoints(points + 1);
+      setGuessed(true);
+      setMessage("");
       return;
     }
     channel?.send({
@@ -40,20 +44,20 @@ const ChatInput = ({ roomId }: { roomId: string }) => {
 
   return (
     <div className="flex gap-2">
-      <input
-        className="rounded-xl w-full p-2 text-black"
+      <Input
+        variant="faded"
         type="text"
-        placeholder="Escribe un mensaje"
+        placeholder="Haz tu intento"
         onKeyDown={handleKeyDown}
         onChange={(e) => setMessage(e.target.value)}
         value={message}
       />
-      <button
-        className="bg-green-600 text-white font-bold py-2 px-4 rounded-xl"
+      <Button
+        className="bg-green-600 text-white font-bold rounded-xl"
         onClick={() => sendRealtime("message", { message, sender: username })}
       >
         Enviar
-      </button>
+      </Button>
     </div>
   );
 };

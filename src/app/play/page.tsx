@@ -11,15 +11,25 @@ enum Selected {
   JOIN = "JOIN",
 }
 
-const Play = () => {
+const Play = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
   const { setUser, user } = useUserStore();
-  const [room, setRoom] = useState("");
-  const [selected, setSelected] = useState(Selected.CREATE);
 
-  const changeSelected = (selected: Selected) => {
-    setRoom("");
-    setSelected(selected);
-  };
+  const selected =
+    typeof searchParams.mode === "string"
+      ? searchParams.mode.toUpperCase()
+      : undefined;
+
+  const room =
+    typeof searchParams.room === "string" ? searchParams.room : undefined;
+
+  const password =
+    typeof searchParams.password === "string"
+      ? searchParams.password
+      : undefined;
 
   useEffect(() => {
     localStorage.setItem("username", JSON.stringify(user));
@@ -27,28 +37,28 @@ const Play = () => {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-28 py-12 gap-6">
-      <h1 className="text-white text-6xl font-bold">Lets play!</h1>
+      <h1 className="text-white text-6xl font-bold">Lets play</h1>
       <div className="flex gap-2">
-        <button
+        <Link
+          href="/play?mode=create"
           className={`bg-green-600 rounded-xl py-2 px-3 text-white font-bold text-lg ${
             selected === Selected.CREATE
               ? "border-2 border-white-600"
               : "border-2 border-green-600"
           }`}
-          onClick={() => changeSelected(Selected.CREATE)}
         >
           Create Game
-        </button>
-        <button
+        </Link>
+        <Link
+          href="/play?mode=join"
           className={`bg-green-600 rounded-xl py-2 px-3 text-white font-bold text-lg ${
             selected === Selected.JOIN
               ? "border-2 border-white-600"
               : "border-2 border-green-600"
           }`}
-          onClick={() => changeSelected(Selected.JOIN)}
         >
           Join Game
-        </button>
+        </Link>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -67,16 +77,8 @@ const Play = () => {
       {selected === Selected.CREATE ? (
         <CreateGame />
       ) : (
-        <JoinGame room={room} setRoom={setRoom} />
+        <JoinGame paramsPassword={password} paramsRoom={room} />
       )}
-      <Link
-        href={`/play/${room}`}
-        className={`bg-green-600 rounded-xl p-4 text-white font-bold text-4xl ${
-          !room || !user ? "pointer-events-none opacity-50" : ""
-        }`}
-      >
-        Play
-      </Link>
     </main>
   );
 };
