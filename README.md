@@ -37,10 +37,11 @@ PitchPainter is a web-based drawing and guessing game that allows players to dra
 - [x] Create the database.
 - [x] The user can draw.
 - [x] Create a new game.
-- [ ] Join an existing game.
+- [x] Join an existing game.
 - [ ] The word or phrase is displayed to the drawer.
 - [ ] The word reveals itself to the guessers after a certain amount of time.
-- [ ] Guess a word or phrase.
+- [ ] Sync timer and word across all players.
+- [x] Guess a word or phrase.
 - [x] Chat with other players.
 - [ ] View the leaderboard.
 - [ ] View the rules.
