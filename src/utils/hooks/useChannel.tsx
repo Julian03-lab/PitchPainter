@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { client } from "../supabase/client";
 import { RealtimeChannel } from "@supabase/supabase-js";
 
-const useChannel = (room: string, event: string) => {
+const useChannel = (room: string, event?: string) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [channel, setChannel] = useState<RealtimeChannel>();
 
@@ -15,9 +15,10 @@ const useChannel = (room: string, event: string) => {
       },
     });
 
-    roomOne.on("broadcast", { event: event }, ({ payload }) => {
-      setMessages((messages) => [...messages, payload]);
-    });
+    event === "message" &&
+      roomOne.on("broadcast", { event: "message" }, ({ payload }) => {
+        setMessages((messages) => [...messages, payload]);
+      });
 
     roomOne.subscribe();
 

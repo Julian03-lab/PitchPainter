@@ -59,6 +59,7 @@ const JoinGame = ({
           className="bg-green-600"
           type="submit"
           isLoading={loading}
+          isDisabled={loading || !room}
         >
           Unirse a la partida
         </Button>

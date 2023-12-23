@@ -24,6 +24,15 @@ type userState = {
   setGuessed: (guessed: boolean) => void;
   points: number;
   setPoints: (points: number) => void;
+  isDrawing: boolean;
+  setIsDrawing: (isDrawing: boolean) => void;
+};
+
+type roomState = {
+  votes: number;
+  setVotes: (votes: number) => void;
+  usersCount: number;
+  setUsersCount: (usersCount: number) => void;
 };
 
 export const useWordStore = create<SelectedWordsState>()((set) => ({
@@ -50,4 +59,13 @@ export const useUserStore = create<userState>()((set) => ({
   setGuessed: (guessed: boolean) => set({ guessed }),
   points: 0,
   setPoints: (points: number) => set({ points }),
+  isDrawing: false,
+  setIsDrawing: (isDrawing: boolean) => set({ isDrawing }),
+}));
+
+export const useRoomStore = create<roomState>()((set) => ({
+  votes: 0,
+  setVotes: (votes: number) => set({ votes }),
+  usersCount: 0,
+  setUsersCount: (usersCount: number) => set({ usersCount }),
 }));

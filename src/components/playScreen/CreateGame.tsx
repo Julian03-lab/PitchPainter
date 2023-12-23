@@ -1,12 +1,11 @@
 "use client";
 
+import { client } from "@/utils/supabase/client";
 import { Button, Checkbox, Input } from "@nextui-org/react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const CreateGame = ({}: {}) => {
-  const supabase = createClientComponentClient();
   const [room, setRoom] = useState("");
   const [password, setPassword] = useState("");
   const [isPassword, setIsPassword] = useState(false);
@@ -17,7 +16,7 @@ const CreateGame = ({}: {}) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { error, data } = await supabase
+      const { error, data } = await client
         .from("games")
         .insert([
           {

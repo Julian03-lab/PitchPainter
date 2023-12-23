@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { client } from "../supabase/client";
 import { RealtimeChannel } from "@supabase/supabase-js";
 import { useUserStore } from "../idea-generation";
+import { updateUserCount } from "../supabase/functions/updateUserCount";
 
 const usePresence = (room: string) => {
   const [channel, setChannel] = useState<RealtimeChannel>();
@@ -12,7 +13,7 @@ const usePresence = (room: string) => {
     setUser(localStorage.getItem("username")?.split('"')[1] || "Guest");
 
     const roomOne = client.channel(room);
-    roomOne.on("presence", { event: "sync" }, () => {
+    roomOne.on("presence", { event: "sync" }, async () => {
       const presenceState = roomOne.presenceState();
 
       const users = Object.keys(presenceState)
@@ -21,6 +22,8 @@ const usePresence = (room: string) => {
           return presences;
         })
         .flat();
+
+      await updateUserCount(users.length, room);
       setUsers(users.sort((a, b) => b.points - a.points));
     });
 
