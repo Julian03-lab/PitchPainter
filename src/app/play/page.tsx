@@ -3,6 +3,7 @@
 import CreateGame from "@/components/playScreen/CreateGame";
 import JoinGame from "@/components/playScreen/JoinGame";
 import { useUserStore } from "@/utils/idea-generation";
+import { Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -62,17 +63,13 @@ const Play = ({
       </div>
 
       <div className="flex flex-col gap-4">
-        <label htmlFor="username" className="text-white text-4xl font-bold">
-          Username
-        </label>
-        <input
-          id="username"
-          className="rounded-xl w-full p-2 text-black"
-          type="text"
-          placeholder="Tito Pacheco"
-          onChange={(e) => setUser(e.target.value)}
+      <Input
+        type="text"
+        variant="bordered"
+        label="Username"
+        onChange={(e) => setUser(e.target.value)}
           value={user}
-        />
+      />
       </div>
       {selected === Selected.CREATE ? (
         <CreateGame />
